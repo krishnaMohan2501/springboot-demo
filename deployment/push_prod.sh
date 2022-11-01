@@ -15,8 +15,8 @@ done
 
 valueFile="./values.yaml"
 service="springboot-demo"
-chartName="../"
-namespace="demonamespace"
+chartName="../springboot-demo"
+namespace="springboot-demoweb"
 time="$(date "+%Y-%m-%d_%H:%M:%S")"
 echo "$img"
 echo chart name: $chartName
