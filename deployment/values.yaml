@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/kykrishna24/spring_with_kubernetes
+  repository: docker.io/kykrishna24/spring_with_kubernetes:latest
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: stable
+  tag: latest
 
 conf:
   port: 8080
@@ -83,7 +83,7 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 cluster:
-  name: "myAKCluster"
+  name: "docker-desktop"
 
 nodeSelector: {}
 

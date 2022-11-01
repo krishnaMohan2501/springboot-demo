@@ -3,7 +3,7 @@
 #release Name
 springboot="springboot-demo"
 
-while [ [$# > 0] ]; do
+while [[ $# > 0 ]]; do
     key = "$1"
     case $key in
     -imgTag)
@@ -13,21 +13,21 @@ while [ [$# > 0] ]; do
     shift
 done
 
-read -p "Enter the release name: " releaseApp
-
-valueFile="values.yaml"
-service="springboot-demmo"
-chartName=$service
+valueFile="./values.yaml"
+service="springboot-demo"
+chartName="../"
 namespace="demonamespace"
 time="$(date "+%Y-%m-%d_%H:%M:%S")"
+echo "$img"
+echo chart name: $chartName
+echo namespace: $namespace
+echo time: $time
 
-name=""
-reason=""
+release=$service
+ingressHostPath="$release.krishna.docker-desktop.local.com"
+context="docker-desktop"
 
-release=$service-$releaseApp
-ingressHostPath=""
-context="myAKSCluster"
-
-kubectl config use-context $context
-helm3 upgrade --install $release $chartName --namespace $namespace -f ./$chartName/$valueFile --timeout 3600s --set restart="$time" --set restart.name="$name" --set restart.reason="$reason" && \
-helm3 status $release -n $namespace
+echo "$release"
+kubectl config use-context $context && \
+helm upgrade --install $release $chartName --namespace $namespace -f $valueFile --timeout 3600s --set image.tag=$img --set restart.timestamp="$time" --set restart.name="$name" --set restart.reason="$reason" && \
+helm status $release -n $namespace
