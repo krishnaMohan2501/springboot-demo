@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/kykrishna24/spring_with_kubernetes:latest
+  repository: docker.io/kykrishna24/spring_with_kubernetes:v37
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: v37
 
 conf:
   port: 8080
@@ -57,11 +57,12 @@ ingress:
   annotations:
      kubernetes.io/ingress.class: nginx
      kubernetes.io/tls-acme: "true"
+     nginx.ingress.kubernetes.io/use-regex: "true"
   hosts:
-    - host: springboot-demo.local
+    - host: "{{ .Values.testHost }}"
       paths:
         - path: /
-          pathType: ImplementationSpecific
+#          pathType: ImplementationSpecific
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
-FROM maven:alpine
-VOLUME /tmp
+#FROM maven:alpine
+# cd /opt/app
 COPY target/*.jar app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
 EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app.jar"]
